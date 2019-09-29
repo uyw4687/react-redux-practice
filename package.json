@@ -1,5 +1,5 @@
 {
-    "name": "skeleton",
+    "name": "hw2",
     "version": "0.1.0",
     "private": true,
     "proxy": "http://localhost:8000",
@@ -9,8 +9,12 @@
         "json-server": "^0.15.1",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
+        "react-redux": "^7.1.1",
+        "react-router": "^5.0.1",
+        "react-router-dom": "^5.0.1",
         "react-scripts": "3.1.1",
-        "react-test-renderer": "^16.9.0"
+        "react-test-renderer": "^16.9.0",
+        "redux": "^4.0.4"
     },
     "scripts": {
         "start": "react-scripts start",

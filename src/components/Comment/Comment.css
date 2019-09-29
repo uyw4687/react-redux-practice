@@ -1,0 +1,31 @@
+.Comment {
+    border: 2px solid rgb(218, 39, 149);
+    border-style: solid none;
+    border-top: none;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.Comment .Name {
+    width: 150px;
+    margin-right: 20px;
+    font-weight: bold;
+    text-align: right;
+    display: inline-block;
+}
+.Comment .Content {
+    width: 170px;
+    display: inline-block;
+    text-align: left
+}
+.Comment label {
+    margin-right: 10px;
+    height: 25px;
+    font-size: 20px;
+}
+.Comment .NotAnAuthor {
+    width: 120px;
+    display: inline-block;
+}
+.Comment .CommentButtons {
+    display: inline;
+}

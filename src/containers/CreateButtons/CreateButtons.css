@@ -1,0 +1,10 @@
+.CreateButtons button {
+    width: 115px;
+    height: 40px;
+    border-radius: 42px;
+    border: 2px solid #4CAF50;
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+}

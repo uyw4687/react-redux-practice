@@ -31,3 +31,19 @@
     transform: rotate(360deg);
   }
 }
+
+#logout-button {
+  background-color: #9b2bcf;
+  position: absolute;
+  top: 10px;
+  right: 55px;
+  color: rgb(240, 253, 255);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0px;
+  border-radius: 50px;
+  font-family: Arial;
+  height: 25px;
+  width: 90px;
+  cursor: pointer;
+}

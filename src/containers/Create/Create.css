@@ -1,0 +1,54 @@
+.Create {
+    padding-top: 70px;
+}
+.Create h3{
+    white-space: pre-line;
+}
+.Create p{
+    white-space: pre-line;
+}
+.Create label {
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    margin: 10px;
+}
+.Create textarea {
+    width: 80%;
+    height: 25px;
+    font-size: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+.Create #article-content-input {
+    height: 125px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.Create .ArticleInformation {
+    border: 2px solid #4CAF50;
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+}
+.Create #article-title {
+    font-size: 30px;
+    margin-bottom: -10px;
+}
+.Create #article-author {
+    margin-left: 400px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(9, 68, 7);
+}
+.Create #article-content {
+    font-weight: bold;
+    font-size: 15px;
+    color: rgb(111, 126, 123);
+    margin-top: 25px;
+}

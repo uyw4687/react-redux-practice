@@ -1,0 +1,44 @@
+.Article .ArticleButtons {
+    display: inline;
+}
+.Article #article-articleinformation {
+    border: 2px solid #4CAF50;
+    border-radius: 20px;
+    margin: 50px;
+    margin-bottom: 10px;
+}
+.Article #article-title {
+    font-size: 30px;
+    margin-bottom: -10px;
+}
+.Article #article-author {
+    margin-left: 400px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(9, 68, 7);
+}
+.Article #article-content {
+    font-weight: bold;
+    font-size: 15px;
+    color: rgb(111, 126, 123);
+    margin-top: 25px;
+}
+.Article #comments-label {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 50px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: block;
+    border: 2px double rgb(218, 39, 149);
+    border-radius: 20px;
+}
+.Article #edit-article-button {
+    margin-left:48.5%
+}
+.Article #new-comment-content-input {
+    margin: 8px;
+    margin-top: 40px;
+    margin-left: 65px;
+}

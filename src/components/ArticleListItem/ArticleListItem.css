@@ -1,0 +1,38 @@
+.ArticleListItem {
+    border: 2px solid #66b3ff;
+    border-radius: 10px;
+    height: 30px;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-bottom: 5px;
+}
+.ArticleListItem button {
+    width: 200px;
+    border: none;
+    background: none;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;   
+    cursor: pointer;
+}
+.ArticleListItem label {
+    color: #959595;
+    font-size: 25px;
+    display: inline-block;
+    width: 100px;
+}
+.ArticleListItem#id {
+    border: 1px green;
+    border-radius: 0px;
+    border-style: solid none;
+}
+.ArticleListItem#id button {
+    font-weight: bold;
+    color: #ff0000;
+    cursor: default;
+}
+.ArticleListItem#id label {
+    font-weight: bold;
+    color: #ff0000;
+    font-size: 25px
+}

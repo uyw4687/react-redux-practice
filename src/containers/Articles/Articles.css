@@ -1,0 +1,16 @@
+.Articles #title-label {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 20px;
+    display: block;
+}
+.Articles #create-article-button {
+    width: 20%;
+    height: 40px;
+    border-radius: 42px;
+    border: 2px solid #4CAF50;
+    margin: 10px auto;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+}
