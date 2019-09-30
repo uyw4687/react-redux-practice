@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import CreateButtons from '../CreateButtons/CreateButtons'
 
-import "./Create.css"
-
 import { connect } from 'react-redux'
-import * as actionTypes from '../../store/actions/actionTypes'
+import * as actionCreators from '../../store/actions/blog'
+
+import "./Create.css"
 
 class Create extends Component {
     state = {
@@ -24,16 +24,15 @@ class Create extends Component {
             />
         )
     }
-    authorIdToName = author_id => 
-        this.props.storedUsers.filter(user => user.id === author_id)[0].name
     onConfirm = () => {
         if(this.state.title!=='' && this.state.content!=='')
-            this.props.onCreateArticle(this.state.title, this.state.content)
+            this.props.onCreateArticle(this.props.currentUserId, this.state.title, this.state.content)
     }
+    authorIdToName = author_id => 
+        this.props.storedUsers.filter(user => user.id === author_id)[0].name
     componentDidUpdate(prevProps) {
-        if(prevProps.storedArticles !== this.props.storedArticles){
-            this.props.onConfirm(this.props.storedArticles.length)
-        }
+        if(prevProps.storedArticles !== this.props.storedArticles)
+            this.props.onConfirm(this.props.storedArticles[this.props.storedArticles.length-1].id)
     }
     render() {
         if(this.state.preview===false) {
@@ -53,7 +52,7 @@ class Create extends Component {
                     <label>{'<'}Preview{'>'}</label>
                     <div className='ArticleInformation'>
                         <h3 id='article-title'>{this.state.title}</h3>
-                        <h3 id='article-author'>{this.authorIdToName(this.props.storedCurrentUserId)}</h3>
+                        <h3 id='article-author'>{this.authorIdToName(this.props.currentUserId)}</h3>
                         <p id='article-content'>{this.state.content}</p>
                     </div>
                     {this.createButtons(true)}
@@ -62,20 +61,16 @@ class Create extends Component {
         }
     }
 }
-
 const mapStateToProps = state => {
     return {
         storedArticles: state.at.articles,
-        storedUsers: state.at.users,
-        storedCurrentUserId: state.at.currentUserId
+        storedUsers: state.at.users
     }
 }
-
 const mapDispatchToProps = dispatch => {
     return {
-        onCreateArticle: (title, content) =>
-            dispatch({ type: actionTypes.CREATE_ARTICLE, title: title, content: content }),
+        onCreateArticle: (author_id, title, content) =>
+            dispatch(actionCreators.createArticle({author_id: author_id, title: title, content: content}))
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Create)

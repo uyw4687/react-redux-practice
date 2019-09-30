@@ -1,25 +1,25 @@
 .ArticleListItem {
     border: 2px solid #66b3ff;
     border-radius: 10px;
-    height: 30px;
-    margin-left: 80px;
-    margin-right: 80px;
+    height: 40px;
     margin-bottom: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .ArticleListItem button {
-    width: 200px;
+    width: 400px;
     border: none;
     background: none;
     text-align: center;
-    font-size: 25px;
+    font-size: 10px;
     font-weight: 600;   
     cursor: pointer;
 }
 .ArticleListItem label {
     color: #959595;
-    font-size: 25px;
+    font-size: 15px;
     display: inline-block;
-    width: 100px;
+    width: 50px;
 }
 .ArticleListItem#id {
     border: 1px green;
@@ -28,6 +28,7 @@
 }
 .ArticleListItem#id button {
     font-weight: bold;
+    font-size: 25px;
     color: #ff0000;
     cursor: default;
 }

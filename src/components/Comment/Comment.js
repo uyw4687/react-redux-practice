@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import './Comment.css'
-
 import { connect } from 'react-redux'
-import * as actionTypes from '../../store/actions/actionTypes'
+import * as actionCreators from '../../store/actions/blog'
+
+import './Comment.css'
 
 class Comment extends Component {
     onEdit = () => {
@@ -34,14 +34,12 @@ class Comment extends Component {
         )
     }
 }
-
 const mapDispatchToProps = dispatch => {
     return {
         onEditComment: (id, content) =>
-            dispatch({ type: actionTypes.EDIT_COMMENT, id: id, content: content }),
+            dispatch(actionCreators.editComment(id, content)),
         onDeleteComment: (id) =>
-            dispatch({ type: actionTypes.DELETE_COMMENT, id: id })
+            dispatch(actionCreators.deleteComment(id))
     }
 }
-
 export default connect(null, mapDispatchToProps)(Comment)

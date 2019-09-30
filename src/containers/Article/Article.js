@@ -1,37 +1,48 @@
 import React, { Component } from 'react'
-
-import { BrowserRouter, Route, Redirect } from 'react-router-dom'
-
 import ArticleEdit from '../ArticleEdit/ArticleEdit'
 import Comment from '../../components/Comment/Comment'
 
-import './Article.css'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import * as actionTypes from '../../store/actions/actionTypes'
+import * as actionCreators from '../../store/actions/blog'
+
+import './Article.css'
 
 class Article extends Component {
     state = { 
         newComment: '', 
         state: 0
     }
-    postTodoHandler = () => {
-        const data = { email: this.state.email, password: this.state.password };
-        if (data.email === "swpp@snu.ac.kr" && data.password === "iluvswpp")
-            this.props.onSuccess();
-        else
-            alert("Email or password is wrong");
-    }
     onEdit = () => {
         this.setState({state: 1});
     }
+    clearComments = (i) => {
+        var comments = this.props.storedComments
+        if(i<comments.length) {
+            setTimeout( () => {
+                if(comments[i].article_id === this.props.id)
+                    this.props.onDeleteComment(comments[i].id)
+                else {
+                    while(i++<comments.length-1) {
+                        if(comments[i].article_id === this.props.id) {
+                            i--
+                            break
+                        }
+                    }
+                }
+                i++
+                this.clearComments(i)
+            }, 100)
+        }
+    }
     onDelete = () => {
+        this.clearComments(0)
         this.props.onDeleteArticle(this.props.id)
         this.props.onBack()
     }
-
     createButtons = () => {
-        if(this.article.author_id === this.props.storedCurrentUserId)
+        if(this.article.author_id === this.props.currentUserId)
             return (
                 <div className='ArticleButtons'>
                     <button id='edit-article-button' onClick={this.onEdit}>Edit</button>
@@ -40,10 +51,9 @@ class Article extends Component {
             )
         return
     }
-
-    authorIdToName = author_id => 
-        this.props.storedUsers.filter(user => user.id === author_id)[0].name
-    
+    authorIdToName = author_id => {
+        return this.props.storedUsers.filter(user => user.id === author_id)[0].name
+    }
     getArticle = () =>
         this.props.storedArticles.filter(article =>
             article.id === this.props.id)[0]
@@ -54,11 +64,13 @@ class Article extends Component {
         this.props.storedComments.filter(comment =>
             comment.article_id === this.props.id
             ).map(comment => 
-                <Comment key={comment.id} id={comment.id} name={this.authorIdToName(comment.author_id)} content={comment.content} isAuthor={comment.author_id===this.props.storedCurrentUserId} />
+                <Comment key={comment.id} id={comment.id}
+                         name={this.authorIdToName(comment.author_id)} 
+                         content={comment.content} isAuthor={comment.author_id===this.props.currentUserId} />
             )
     onCreateComment = () => {
         if(this.state.newComment !== '') {
-            this.props.onCreateComment(this.props.id, this.state.newComment)
+            this.props.onCreateComment(this.props.id, this.props.currentUserId, this.state.newComment)
             this.setState({newComment: ''})
         }
     }
@@ -68,13 +80,8 @@ class Article extends Component {
             this.forceUpdate()
     }
     render() {
-        this.article = this.getArticle()
-        console.log('here inside')
-        console.log(this.props.storedArticles)
         console.log(this.props.id)
-        console.log(this.article)
-        console.log(this.props.storedArticles.filter(article =>
-            article.id === this.props.id))
+        this.article = this.getArticle()
         if(this.state.state === 0) {
             return (
                 <BrowserRouter>
@@ -103,7 +110,8 @@ class Article extends Component {
                                         <ArticleEdit 
                                             id={this.props.id}
                                             onBack={() => this.setState({state: 0})}
-                                            onConfirm={() => this.setState({state: 0})} />} />
+                                            onConfirm={() => this.setState({state: 0})}
+                                            currentUserId={this.props.currentUserId} />} />
                         <Redirect exact from='/' to={'/articles/'+this.props.id+'/edit'} />
                     </div>
                 </BrowserRouter>
@@ -111,23 +119,21 @@ class Article extends Component {
         }
     }
 }
-
 const mapStateToProps = state => {
     return {
         storedArticles: state.at.articles,
         storedComments: state.at.comments,
-        storedCurrentUserId: state.at.currentUserId,
-        storedUsers: state.at.users,
+        storedUsers: state.at.users
     }
 }
-
 const mapDispatchToProps = dispatch => {
     return {
         onDeleteArticle: (id) =>
-            dispatch({ type: actionTypes.DELETE_ARTICLE, id: id }),
-        onCreateComment: (article_id, content) =>
-            dispatch({ type: actionTypes.CREATE_COMMENT, article_id: article_id, content: content })
+            dispatch(actionCreators.deleteArticle(id)),
+        onCreateComment: (article_id, author_id, content) =>
+            dispatch(actionCreators.createComment({ article_id: article_id, author_id: author_id, content: content })),
+        onDeleteComment: (id) =>
+            dispatch(actionCreators.deleteComment(id))
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Article)

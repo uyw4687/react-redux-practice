@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import CreateButtons from '../CreateButtons/CreateButtons'
-import './ArticleEdit.css'
 
 import { connect } from 'react-redux'
-import * as actionTypes from '../../store/actions/actionTypes'
+import * as actionCreators from '../../store/actions/blog'
+
+import './ArticleEdit.css'
 
 class ArticleEdit extends Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class ArticleEdit extends Component {
                         <label>{'<'}Preview{'>'}</label>
                         <div className='ArticleInformation'>
                             <h3 id='article-title'>{this.state.title}</h3>
-                            <h3 id='article-author'>{this.authorIdToName(this.props.storedCurrentUserId)}</h3>
+                            <h3 id='article-author'>{this.authorIdToName(this.props.currentUserId)}</h3>
                             <p id='article-content'>{this.state.content}</p>
                         </div>
                         {this.createButtons(true)}
@@ -72,7 +73,6 @@ class ArticleEdit extends Component {
         }
     }
 }
-
 const mapStateToProps = state => {
     return {
         storedArticles: state.at.articles,
@@ -80,12 +80,10 @@ const mapStateToProps = state => {
         storedCurrentUserId: state.at.currentUserId
     }
 }
-
 const mapDispatchToProps = dispatch => {
     return {
         onEditArticle: (id, title, content) =>
-            dispatch({ type: actionTypes.EDIT_ARTICLE, id: id, title: title, content: content })
+            dispatch(actionCreators.editArticle(id, title, content))
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleEdit)

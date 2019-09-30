@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import "./Login.css"
-
-import { connect } from 'react-redux'
-import * as actionTypes from '../../store/actions/actionTypes'
 
 import { Redirect } from 'react-router-dom';
+
+import { connect } from 'react-redux'
+import * as actionCreators from '../../store/actions/blog'
+
+import "./Login.css"
 
 class Login extends Component {
     state = {
@@ -12,13 +13,11 @@ class Login extends Component {
         password: ''
     }
     onLogIn = () => {
-        //var data = { email: this.state.email, password: this.state.password };
-        // if (data.email === "swpp@snu.ac.kr" && data.password === "iluvswpp") {
         var filtered = this.props.storedUsers.filter(user => user.email === this.state.email)
         if(filtered.length === 1) {
             if(filtered[0].password === this.state.password) {
                 this.props.onLogIn(filtered[0].id)
-                this.props.onSuccess()
+                this.props.onSuccess(filtered[0].id)
                 return
             }
         }
@@ -44,21 +43,15 @@ class Login extends Component {
         )
     }
 }
-
 const mapStateToProps = state => {
     return {
         storedCurrentUserId: state.at.currentUserId,
         storedUsers: state.at.users
     }
 }
-
 const mapDispatchToProps = dispatch => {
-    return {
-        onLogIn: (id) =>
-            dispatch({ type: actionTypes.LOG_IN, id: id }),
-        onLogOut: () =>
-            dispatch({ type: actionTypes.LOG_OUT })
-    }
+  return {
+      onLogIn: (id) => dispatch(actionCreators.logIn(id))
+  }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

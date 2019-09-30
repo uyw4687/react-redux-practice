@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
+
 import './CreateButtons.css'
 
 class CreateButtons extends Component {
-    // componentDidMount(){
-    //     console.log(this.props.onConfirm)
-    // }
     render() {
         var buttonStylePreview = {
             fontWeight: (this.props.isPreview ? 600 : 100)
@@ -22,5 +20,4 @@ class CreateButtons extends Component {
         )
     }
 }
-
 export default CreateButtons;

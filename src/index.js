@@ -9,11 +9,24 @@ import { createStore, combineReducers } from 'redux';
 
 import articleReducer from './store/reducers/article'
 
+import { applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+
 const rootReducer = combineReducers({
     at: articleReducer
 })
 
-const store = createStore(rootReducer)
+const logger = store => {
+    return next => {
+        return action => {
+            console.log('[Mid] Dispatching', action)
+            const result = next(action)
+            console.log('[Mid] Next State', store.getState())
+            return result
+        }
+    }
+}
+const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

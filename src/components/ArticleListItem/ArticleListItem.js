@@ -13,5 +13,4 @@ class ArticleListItem extends Component {
         )
     }
 }
-
 export default ArticleListItem;

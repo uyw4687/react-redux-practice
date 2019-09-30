@@ -20,7 +20,8 @@ class Service extends Component {
                         <div className="Service">
                             <Route path='/articles' exact render={() => 
                                 <Articles onCreate={() => this.setState({state: 1})} 
-                                    setArticle={this.setArticle} />} />
+                                    setArticle={this.setArticle} 
+                                    currentUserId={this.props.currentUserId} />} />
                             <Redirect exact from='/' to='/articles' />
                         </div>
                     </BrowserRouter>
@@ -33,7 +34,8 @@ class Service extends Component {
                                 render={() => 
                                     <Create 
                                     onBack={() => this.setState({state: 0})} 
-                                    onConfirm={(id) => this.setArticle(id)} />} />
+                                    onConfirm={(id) => this.setArticle(id)} 
+                                    currentUserId={this.props.currentUserId} />} />
                             <Redirect exact from='/' to='/articles/create' />
                         </div>
                     </BrowserRouter>
@@ -46,11 +48,13 @@ class Service extends Component {
                                                                 return typeof (match.params.id) === 'string' ? 
                                                                 <div className='ServiceArticle'>
                                                                     <Article onBack={() => this.setState({ state: 0 })}
-                                                                                id={this.state.selectedArticle} />
+                                                                                id={this.state.selectedArticle}
+                                                                                currentUserId={this.props.currentUserId} />
                                                                     <Redirect from='/' to={'/articles/'+this.state.selectedArticle} />
                                                                 </div> : 
                                                                 <Article onBack={() => this.setState({ state: 0 })}
-                                                                            id={parseInt(match.params.id)} /> }} />
+                                                                            id={parseInt(match.params.id)}
+                                                                            currentUserId={this.props.currentUserId} /> }} />
                             <Redirect from='/' to={'/articles/'+this.state.selectedArticle} />
                         </div>
                     </BrowserRouter>
@@ -60,5 +64,4 @@ class Service extends Component {
         }
     }
 }
-
 export default Service;

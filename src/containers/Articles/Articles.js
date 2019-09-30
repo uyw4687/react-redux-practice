@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import './Articles.css'
-
 import ArticleListItem from '../../components/ArticleListItem/ArticleListItem'
 
 import { connect } from 'react-redux'
 
+import './Articles.css'
+
 class Articles extends Component {
+    authorIdToName = author_id => 
+        this.props.storedUsers.filter(user => user.id === author_id)[0].name
     onClick = (articleNum) => {
         this.props.setArticle(articleNum)
     }
-    authorIdToName = author_id => 
-        this.props.storedUsers.filter(user => user.id === author_id)[0].name
     render() {
         const articles = this.props.storedArticles.map((article) => 
             <ArticleListItem key={article.id}
@@ -34,12 +34,10 @@ class Articles extends Component {
         )
     }
 }
-
 const mapStateToProps = state => {
     return {
         storedArticles: state.at.articles,
         storedUsers: state.at.users
     }
 }
-
 export default connect(mapStateToProps, null)(Articles)
