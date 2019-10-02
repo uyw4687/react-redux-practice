@@ -13,7 +13,7 @@ class CreateButtons extends Component {
         return (
             <div className="CreateButtons">
                 <button id={'back-'+this.props.buttonId+'-article-button'} onClick={this.props.onBack}>Back</button>
-                <button id={'confirm-'+this.props.buttonId+'-article-button'} onClick={this.props.onConfirm}>Confirm</button>
+                <button id={'confirm-'+this.props.buttonId+'-article-button'} disabled={this.props.isBlank} onClick={this.props.onConfirm}>Confirm</button>
                 <button style={buttonStylePreview} id='preview-tab-button' onClick={this.props.onPreview}>Preview</button>
                 <button style={buttonStyleWrite} id='write-tab-button' onClick={this.props.onWrite}>Write</button>
             </div>

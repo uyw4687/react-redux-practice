@@ -19,6 +19,7 @@ class ArticleEdit extends Component {
             content: article.content,
             preview: false}
     }
+    checkBlank = () => this.state.title === '' || this.state.content === ''
     authorIdToName = author_id => 
         this.props.storedUsers.filter(user => user.id === author_id)[0].name
     onBack = () => {
@@ -29,7 +30,7 @@ class ArticleEdit extends Component {
         this.props.onBack()
     }
     onConfirm = () => {
-        if(this.state.title!=='' && this.state.content!=='') {
+        if(!this.checkBlank()) {
             this.props.onEditArticle(this.props.id, this.state.title, this.state.content)
             this.props.onConfirm()
         }
@@ -43,6 +44,7 @@ class ArticleEdit extends Component {
                 onWrite={() => this.setState({ preview: false })}
                 buttonId='edit'
                 isPreview={isPreview}
+                isBlank={this.checkBlank()}
             />
         )
     }

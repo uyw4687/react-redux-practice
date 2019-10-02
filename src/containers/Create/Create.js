@@ -12,6 +12,7 @@ class Create extends Component {
         content: '',
         preview: false
     }
+    checkBlank = () => this.state.title === '' || this.state.content === ''
     createButtons(isPreview) {
         return (
             <CreateButtons 
@@ -20,12 +21,13 @@ class Create extends Component {
                 onPreview={() => this.setState({ preview: true })}
                 onWrite={() => this.setState({ preview: false })}
                 buttonId='create'
+                isBlank={this.checkBlank()}
                 isPreview={isPreview}
             />
         )
     }
     onConfirm = () => {
-        if(this.state.title!=='' && this.state.content!=='')
+        if(!this.checkBlank())
             this.props.onCreateArticle(this.props.currentUserId, this.state.title, this.state.content)
     }
     authorIdToName = author_id => 

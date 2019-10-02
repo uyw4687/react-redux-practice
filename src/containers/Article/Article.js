@@ -17,6 +17,7 @@ class Article extends Component {
     onEdit = () => {
         this.setState({state: 1});
     }
+    checkBlank = () => this.state.newComment === ''
     clearComments = (i) => {
         var comments = this.props.storedComments
         if(i<comments.length) {
@@ -69,7 +70,7 @@ class Article extends Component {
                          content={comment.content} isAuthor={comment.author_id===this.props.currentUserId} />
             )
     onCreateComment = () => {
-        if(this.state.newComment !== '') {
+        if(!this.checkBlank()) {
             this.props.onCreateComment(this.props.id, this.props.currentUserId, this.state.newComment)
             this.setState({newComment: ''})
         }
@@ -94,7 +95,7 @@ class Article extends Component {
                         {this.createButtons()}
                         <button id='back-detail-article-button' onClick={this.props.onBack}>Back</button>
                         <input type="text" id="new-comment-content-input" value={this.state.newComment} onChange={(event) => this.setState({ newComment: event.target.value })} />
-                        <button id='confirm-create-comment-button' onClick={this.onCreateComment}>Create</button>
+                        <button id='confirm-create-comment-button' disabled={this.checkBlank()} onClick={this.onCreateComment}>Create</button>
                         <p id='comments-label'>Comments</p>
                         {this.getComments()}
                         <Redirect exact from='/' to={'/articles/'+this.props.id} />
