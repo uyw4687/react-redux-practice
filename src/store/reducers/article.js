@@ -2,20 +2,20 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
     articles: [
-        { id: 1, author_id: 1, title: 'Let\'s', content: 'eateateateateateateateateateateateateateateat\nplayplayplayplayplayplayplayplayplayplayplayplay\ndrinkdrinkndrinkdrinkndrinkdrinkndrinkdrinkndrink' },
-        { id: 2, author_id: 1, title: 'Movie', content: 'yeah watch movie' },
-        { id: 3, author_id: 2, title: 'Dinner', content: 'oh eat dinner' }
+        // { id: 1, author_id: 1, title: 'Let\'s', content: 'eateateateateateateateateateateateateateateat\nplayplayplayplayplayplayplayplayplayplayplayplay\ndrinkdrinkndrinkdrinkndrinkdrinkndrinkdrinkndrink' },
+        // { id: 2, author_id: 1, title: 'Movie', content: 'yeah watch movie' },
+        // { id: 3, author_id: 2, title: 'Dinner', content: 'oh eat dinner' }
     ],
     comments: [
-        { id: 1, author_id: 1, article_id: 1, content: 'eat yeahhh' },
-        { id: 2, author_id: 2, article_id: 1, content: 'drive!!!!' },
-        { id: 3, author_id: 3, article_id: 1, content: 'drink >< ><' },
-        { id: 3, author_id: 2, article_id: 2, content: 'drink yeahh' }
+        // { id: 1, author_id: 1, article_id: 1, content: 'eat yeahhh' },
+        // { id: 2, author_id: 2, article_id: 1, content: 'drive!!!!' },
+        // { id: 3, author_id: 3, article_id: 1, content: 'drink >< ><' },
+        // { id: 3, author_id: 2, article_id: 2, content: 'drink yeahh' }
     ],
     users: [
-        { id: 1, email: 'swpp@snu.ac.kr', password: 'iluvswpp', name: 'BJH', logged_in: false },
-        { id: 2, email: '2', password: '1', name: 'OSK', logged_in: false },
-        { id: 3, email: '3', password: '1', name: 'Gab', logged_in: false }
+        // { id: 1, email: 'swpp@snu.ac.kr', password: 'iluvswpp', name: 'BJH', logged_in: false },
+        // { id: 2, email: '2', password: '1', name: 'OSK', logged_in: false },
+        // { id: 3, email: '3', password: '1', name: 'Gab', logged_in: false }
     ]
 }
 const reducer = (state = initialState, action) => {

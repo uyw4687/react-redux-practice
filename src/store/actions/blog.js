@@ -10,7 +10,7 @@ export const getUsers = () => {
     return dispatch => {
         return axios.get('/api/user')
             .then(res => dispatch(getUsers_(res.data)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const getArticles_ = articles => ({
@@ -20,7 +20,7 @@ export const getArticles = () => {
     return dispatch => {
         return axios.get('/api/articles')
             .then(res => dispatch(getArticles_(res.data)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const getComments_ = comments => ({
@@ -30,7 +30,7 @@ export const getComments = () => {
     return dispatch => {
         return axios.get('/api/comments')
             .then(res => dispatch(getComments_(res.data)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const logIn_ = user => ({
@@ -40,18 +40,17 @@ export const logIn = id => {
     return dispatch => {
         return axios.patch('/api/user/'+id, {logged_in: true})
             .then(res => dispatch(logIn_(res.data)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const logOut_ = user => ({
     type: actionTypes.LOG_OUT, id: user.id
 })
 export const logOut = id => {
-    console.log(id)
     return dispatch => {
         return axios.patch('/api/user/'+id, {logged_in: false})
             .then(res => dispatch(logOut_(res.data)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const createArticle_ = article => ({
@@ -63,7 +62,7 @@ export const createArticle = article => {
     return dispatch => {
         return axios.post('/api/articles', article)
             .then(res => dispatch(createArticle_(res.data)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const editArticle_ = (id, title, content) => ({
@@ -73,7 +72,7 @@ export const editArticle = (id, title, content) => {
     return dispatch => {
         return axios.patch('/api/articles/'+id, { title: title, content: content} )
             .then(res => dispatch(editArticle_(id, title, content)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const deleteArticle_ = id => ({
@@ -83,7 +82,7 @@ export const deleteArticle = id => {
     return dispatch => {
         return axios.delete('/api/articles/'+id)
             .then(res => dispatch(deleteArticle_(id)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const createComment_ = comment => ({
@@ -95,7 +94,7 @@ export const createComment = comment => {
     return dispatch => {
         return axios.post('/api/comments', comment)
             .then(res => dispatch(createComment_(res.data)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const editComment_ = (id, content) => ({
@@ -105,7 +104,7 @@ export const editComment = (id, content) => {
     return dispatch => {
         return axios.patch('/api/comments/'+id, { content: content } )
             .then(res => dispatch(editComment_(id, content)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }
 export const deleteComment_ = id => ({
@@ -115,6 +114,6 @@ export const deleteComment = id => {
     return dispatch => {
         return axios.delete('/api/comments/'+id)
             .then(res => dispatch(deleteComment_(id)))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 }

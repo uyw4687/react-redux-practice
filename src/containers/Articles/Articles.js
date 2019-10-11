@@ -8,6 +8,7 @@ import './Articles.css'
 class Articles extends Component {
     authorIdToName = author_id => 
         this.props.storedUsers.filter(user => user.id === author_id)[0].name
+
     onClick = (articleNum) => {
         this.props.setArticle(articleNum)
     }

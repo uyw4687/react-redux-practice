@@ -23,20 +23,20 @@ class Login extends Component {
         }
         alert("Email or password is wrong");
     }
-    onKeyPressed = (event) => {
-        var code = event.keyCode || event.which
-        if(code === 13) {
-            this.onLogIn()
-        }
-    }
+    // onKeyPressed = (event) => {
+    //     var code = event.keyCode || event.which
+    //     if(code === 13) {
+    //         this.onLogIn()
+    //     }
+    // }
     render() {
         return (
             <div className = "Login">
                 <label id="email-label">Email</label>
                 <input type="email" id="email-input" onChange={(event) => this.setState({ email: event.target.value })} />
                 <label>Password</label>
-                <input type="password" id="pw-input" onChange={(event) => this.setState({ password: event.target.value })} 
-                    onKeyPress={this.onKeyPressed} />
+                <input type="password" id="pw-input" onChange={(event) => this.setState({ password: event.target.value })} />
+                     {/* onKeyPress={this.onKeyPressed} /> */}
                 <button id="login-button" onClick={this.onLogIn}>Login</button>
                 <Redirect exact from='/' to='/login' />
             </div>

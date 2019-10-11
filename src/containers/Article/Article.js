@@ -14,31 +14,35 @@ class Article extends Component {
         newComment: '', 
         state: 0
     }
+    constructor(props) {
+        super(props)
+        this.getArticle = this.getArticle.bind(this)
+    }
     onEdit = () => {
         this.setState({state: 1});
     }
     checkBlank = () => this.state.newComment === ''
-    clearComments = (i) => {
-        var comments = this.props.storedComments
-        if(i<comments.length) {
-            setTimeout( () => {
-                if(comments[i].article_id === this.props.id)
-                    this.props.onDeleteComment(comments[i].id)
-                else {
-                    while(i++<comments.length-1) {
-                        if(comments[i].article_id === this.props.id) {
-                            i--
-                            break
-                        }
-                    }
-                }
-                i++
-                this.clearComments(i)
-            }, 100)
-        }
-    }
+    // clearComments = (i) => {
+    //     var comments = this.props.storedComments
+    //     if(i<comments.length) {
+    //         setTimeout( () => {
+    //             if(comments[i].article_id === this.props.id)
+    //                 this.props.onDeleteComment(comments[i].id)
+    //             else {
+    //                 while(i++<comments.length-1) {
+    //                     if(comments[i].article_id === this.props.id) {
+    //                         i--
+    //                         break
+    //                     }
+    //                 }
+    //             }
+    //             i++
+    //             this.clearComments(i)
+    //         }, 100)
+    //     }
+    // }
     onDelete = () => {
-        this.clearComments(0)
+        // this.clearComments(0)
         this.props.onDeleteArticle(this.props.id)
         this.props.onBack()
     }
@@ -133,8 +137,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(actionCreators.deleteArticle(id)),
         onCreateComment: (article_id, author_id, content) =>
             dispatch(actionCreators.createComment({ article_id: article_id, author_id: author_id, content: content })),
-        onDeleteComment: (id) =>
-            dispatch(actionCreators.deleteComment(id))
+        // onDeleteComment: (id) =>
+        //     dispatch(actionCreators.deleteComment(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Article)

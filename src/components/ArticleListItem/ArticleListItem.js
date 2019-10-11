@@ -7,10 +7,10 @@ class ArticleListItem extends Component {
         return (
             <div className = "ArticleListItem" id={this.props.id}>
                 <label className='id-label'>{this.props.id}</label>
-                <button onClick={() => this.props.onClick(this.props.id)}>{this.props.title}</button>
+                <button className='title-button' onClick={() => this.props.onClick(this.props.id)}>{this.props.title}</button>
                 <label>{this.props.author}</label>
             </div>
         )
     }
 }
-export default ArticleListItem;
+export default ArticleListItem; 

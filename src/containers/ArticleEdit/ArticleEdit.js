@@ -30,10 +30,8 @@ class ArticleEdit extends Component {
         this.props.onBack()
     }
     onConfirm = () => {
-        if(!this.checkBlank()) {
-            this.props.onEditArticle(this.props.id, this.state.title, this.state.content)
-            this.props.onConfirm()
-        }
+        this.props.onEditArticle(this.props.id, this.state.title, this.state.content)
+        this.props.onConfirm()
     }
     createButtons(isPreview) {
         return (

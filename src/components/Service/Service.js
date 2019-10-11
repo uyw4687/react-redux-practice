@@ -9,9 +9,9 @@ class Service extends Component {
         state: 0, // 1:create, 2:article detail
         selectedArticle: 0
     }
-    setArticle = (article) => 
+    setArticle = (article) => {
         this.setState({ state: 2, selectedArticle: article })
-    
+    }
     render() {
         switch(this.state.state) {
             case 0:
@@ -30,12 +30,11 @@ class Service extends Component {
                 return (
                     <BrowserRouter>
                         <div className="Service">
-                            <Route path='/articles/create' exact 
-                                render={() => 
+                            <Route path='/articles/create' exact render={() => 
                                     <Create 
-                                    onBack={() => this.setState({state: 0})} 
-                                    onConfirm={(id) => this.setArticle(id)} 
-                                    currentUserId={this.props.currentUserId} />} />
+                                        onBack={() => this.setState({state: 0})} 
+                                        onConfirm={(id) => this.setArticle(id)} 
+                                        currentUserId={this.props.currentUserId} />} />
                             <Redirect exact from='/' to='/articles/create' />
                         </div>
                     </BrowserRouter>
@@ -45,16 +44,12 @@ class Service extends Component {
                     <BrowserRouter>
                         <div className="Service">
                             <Route path='/articles/:id' exact render={({match}) => {
-                                                                return typeof (match.params.id) === 'string' ? 
-                                                                <div className='ServiceArticle'>
-                                                                    <Article onBack={() => this.setState({ state: 0 })}
-                                                                                id={this.state.selectedArticle}
-                                                                                currentUserId={this.props.currentUserId} />
-                                                                    <Redirect from='/' to={'/articles/'+this.state.selectedArticle} />
-                                                                </div> : 
-                                                                <Article onBack={() => this.setState({ state: 0 })}
-                                                                            id={parseInt(match.params.id)}
-                                                                            currentUserId={this.props.currentUserId} /> }} />
+                                                                return <div className='ServiceArticle'>
+                                                                        <Article onBack={() => this.setState({ state: 0 })}
+                                                                                 id={this.state.selectedArticle}
+                                                                                 currentUserId={this.props.currentUserId} />
+                                                                        <Redirect from='/' to={'/articles/'+this.state.selectedArticle} />
+                                                                       </div> }} />
                             <Redirect from='/' to={'/articles/'+this.state.selectedArticle} />
                         </div>
                     </BrowserRouter>

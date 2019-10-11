@@ -13,6 +13,10 @@ class Create extends Component {
         preview: false
     }
     checkBlank = () => this.state.title === '' || this.state.content === ''
+    onConfirm = () => {
+        if(!this.checkBlank())
+            this.props.onCreateArticle(this.props.currentUserId, this.state.title, this.state.content)
+    }
     createButtons(isPreview) {
         return (
             <CreateButtons 
@@ -26,12 +30,13 @@ class Create extends Component {
             />
         )
     }
-    onConfirm = () => {
-        if(!this.checkBlank())
-            this.props.onCreateArticle(this.props.currentUserId, this.state.title, this.state.content)
+    authorIdToName = author_id => {
+        console.log(this.props.storedUsers)
+        console.log(author_id)
+        console.log(this.props.storedUsers.filter(user => user.id === author_id))
+        console.log(this.props.storedUsers.filter(user => user.id === author_id)[0])
+        return this.props.storedUsers.filter(user => user.id === author_id)[0].name
     }
-    authorIdToName = author_id => 
-        this.props.storedUsers.filter(user => user.id === author_id)[0].name
     componentDidUpdate(prevProps) {
         if(prevProps.storedArticles !== this.props.storedArticles)
             this.props.onConfirm(this.props.storedArticles[this.props.storedArticles.length-1].id)

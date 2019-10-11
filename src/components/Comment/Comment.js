@@ -6,7 +6,11 @@ import * as actionCreators from '../../store/actions/blog'
 import './Comment.css'
 
 class Comment extends Component {
-    onEdit = () => {
+    constructor(props) {
+        super(props)
+        this.onEdit = this.onEdit.bind(this)
+    }
+    onEdit(){
         var edited = window.prompt('Edit Comment', this.props.content)
         if(edited === '' || edited === null)
             return

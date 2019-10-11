@@ -11,6 +11,10 @@ class AppClass extends Component {
     isLoggedIn: false,
     currentUserId: 0
   }
+  constructor(props) {
+    super(props)
+    this.onLogIn = this.onLogIn.bind(this)
+  }
   createLogout = () =>
     <button id='logout-button' onClick={this.onLogOut}>Logout</button>
   componentDidMount() {
@@ -27,7 +31,7 @@ class AppClass extends Component {
         this.setState({ isLoggedIn: false, currentUserId: 0 })
     }
   }
-  onLogIn = id => {
+  onLogIn(id) {
     this.setState({ isLoggedIn: true, currentUserId: id})
   }
   onLogOut = () => {
@@ -36,6 +40,7 @@ class AppClass extends Component {
     this.props.onLogOut(latestUserId)
   }
   render() {
+    console.log(this.props.storedUsers)
     return !this.state.isLoggedIn ? 
         <Login onSuccess={this.onLogIn} /> : <div className='wrapper'> 
             {this.createLogout()} <Service currentUserId={this.state.currentUserId} /> </div> 
