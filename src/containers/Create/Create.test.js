@@ -90,17 +90,17 @@ describe('<Create />', () => {
         wrapper = component.find('#write-tab-button')
         wrapper.simulate('click')
     })
-    it(`should handle setProps`, () => {
-        const component = mount(create)
-        const title = 'TEST_TITLE'
-        let wrapper = component.find(Create.WrappedComponent)
-        wrapper.setProps({
-            storedArticles: [],
-            storedUsers: stubInitialState.users
-        })
-        wrapper.setProps({
-            storedArticles: stubInitialState.articles,
-            storedUsers: stubInitialState.users
-        })
-    })
+    // it(`should handle setProps`, () => {
+    //     const component = mount(create)
+    //     const title = 'TEST_TITLE'
+    //     let wrapper = component.find(Create.WrappedComponent)
+    //     wrapper.setProps({
+    //         storedArticles: [],
+    //         storedUsers: stubInitialState.users
+    //     })
+    //     wrapper.setProps({
+    //         storedArticles: stubInitialState.articles,
+    //         storedUsers: stubInitialState.users
+    //     })
+    // })
 })
