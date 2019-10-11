@@ -28,12 +28,10 @@ const stubInitialState = {
         { id: 1, email: 'swpp@snu.ac.kr', password: 'iluvswpp', name: 'BJH', logged_in: false }
     ]
 }
-
 const mockStore = getMockStore(stubInitialState)
 
 describe('<Create />', () => {
     let create
-    // let mockSetArticle = jest.fn()
     
     beforeEach(() => {
         create = (
@@ -90,17 +88,4 @@ describe('<Create />', () => {
         wrapper = component.find('#write-tab-button')
         wrapper.simulate('click')
     })
-    // it(`should handle setProps`, () => {
-    //     const component = mount(create)
-    //     const title = 'TEST_TITLE'
-    //     let wrapper = component.find(Create.WrappedComponent)
-    //     wrapper.setProps({
-    //         storedArticles: [],
-    //         storedUsers: stubInitialState.users
-    //     })
-    //     wrapper.setProps({
-    //         storedArticles: stubInitialState.articles,
-    //         storedUsers: stubInitialState.users
-    //     })
-    // })
 })

@@ -4,16 +4,14 @@ import AppClass from './AppClass'
 import { getMockStore } from './test-utils/mocks'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-// import * as actionCreators from './store/actions/blog'
 import axios from 'axios'
-// import store from './store/store';
 
 jest.mock('./containers/Login/Login', () => {
     return jest.fn(props => {
       return (
         <div className="spyLogin">
           <button className="submitButton" onClick={props.onSuccess} />
-        </div>);
+        </div>)
     })
 })
 
@@ -28,7 +26,6 @@ const stubInitialState = {
         { id: 1, email: 'swpp@snu.ac.kr', password: 'iluvswpp', name: 'BJH', logged_in: false }
     ]
 }
-
 const mockStore = getMockStore(stubInitialState)
 
 const stubInitialState2 = {
@@ -42,7 +39,6 @@ const stubInitialState2 = {
         { id: 1, email: 'swpp@snu.ac.kr', password: 'iluvswpp', name: 'BJH', logged_in: true }
     ]
 }
-
 const mockStore2 = getMockStore(stubInitialState2)
 
 describe('<AppClass />', () => {
@@ -103,35 +99,5 @@ describe('<AppClass />', () => {
     it('should get user information', () => {
         const component = mount(appClass2)
         let wrapper = component.find(AppClass.WrappedComponent)
-        // expect(wrapper.state().isLoggedIn).toBe(true)
     })
-    // it(`'login' should be done correctly`, (done) => {
-    //     const component = mount(appClass2)
-    //     // console.log(component.debug())
-    //     const stubUser = [
-    //         { id: 1, email: 'swpp@snu.ac.kr', password: 'iluvswpp', name: 'BJH', logged_in: true }
-    //     ]
-    
-    //     const spy = jest.spyOn(axios, 'patch')
-    //         .mockImplementation(url => {
-    //             return new Promise((resolve, reject) => {
-    //                 const result = {
-    //                     status: 200,
-    //                     data: stubUser
-    //                 }
-    //                 resolve(result)
-    //         })
-    //     })
-    
-    //     store.dispatch(actionCreators.logIn())
-    //         .then((done) => {
-    //             const newState = store.getState()
-    //             console.log(newState)
-    //             console.log(newState.at)
-    //             console.log(newState.at.users)
-    //             expect(newState.at).toBe(stubInitialState2)
-    //             expect(spy).toHaveBeenCalledTimes(1)
-    //             done()
-    //     });
-    //   });
 })
