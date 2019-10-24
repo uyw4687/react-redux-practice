@@ -9,7 +9,8 @@ import * as actionCreators from './store/actions/blog'
 class AppClass extends Component {
   state = {
     isLoggedIn: false,
-    currentUserId: 0
+    currentUserId: 0,
+    bogus: 0,
   }
   constructor(props) {
     super(props)
